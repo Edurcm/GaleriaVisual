@@ -12,6 +12,26 @@ header {
     padding: 1em 0;
 }
 
+.abas {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
+
+.aba {
+    padding: 10px 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.aba.ativa { 
+    background-color: #ddd;
+    border-bottom-color: transparent;
+}
+
 .galeria {
     display: flex;
     flex-wrap: wrap;
@@ -88,3 +108,20 @@ header {
 .direita {
     right: 20px;
 }
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333;
+    color: #fff;
+}
+/* ... estilos anteriores ... */
+
+#campo-busca {
+    width: 30%;
+    padding: 10px;
+    margin: 20px auto;
+    display: block; /* Centraliza o campo */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }

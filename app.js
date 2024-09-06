@@ -4,70 +4,156 @@ const imgModal = document.getElementById('img-modal');
 const fecharModal = document.getElementById('fechar-modal');
 const setaEsquerda = document.getElementById('seta-esquerda');
 const setaDireita = document.getElementById('seta-direita');
+const abasContainer = document.getElementById('abas');
+const campoBusca = document.getElementById('campo-busca');
 
-const imagens = [
-    {
-        "src": "Imagem1.jpeg",
-        "alt": "“O ar gelou, e um rugido ecoou pelas montanhas. Selina agarrou suas espadas gêmeas e as chamas escarlates dançaram em torno dela. O Impuro colossal avançava, mas a Fúria Vermelha não recuaria. Era uma batalha pelo destino de Luminare. E a luz de Ellynia brilhava no horizonte, um grito de esperança contra as sombras.”"
-    },
-    {
-        "src": "Imagem2.jpeg",
-        "alt": "“Evaline olhou para Selina, seus olhos prateados brilhando com uma nova luz. A aliança entre elas era tão forte quanto a própria tocha de Ellynia. Mas uma sombra pairou entre elas, um mistério que ameaçava destruir tudo o que elas haviam conquistado.”"
-    },
-    {
-        "src": "Imagem3.jpeg",
-        "alt": "“Edan recuava, tentando desviar das lâminas de Selina. O que antes era amizade agora se transformara em uma batalha tensa, onde cada movimento era um golpe, cada olhar uma ameaça.”"
-    },
-    // Adicione mais imagens aqui...
+const imagens = [{
+    src: `Imagem1.jpeg`, 
+    alt: `“O ar gelou, e um rugido ecoou pelas montanhas. Selina agarrou suas espadas gêmeas e as chamas escarlates dançaram em torno dela. O Impuro colossal avançava, mas a Fúria Vermelha não recuaria. Era uma batalha pelo destino de Luminare. E a luz de Ellynia brilhava no horizonte, um grito de esperança contra as sombras.”` 
+  },
+  {
+    src: `Imagem2.jpeg`, 
+    alt: `“Evaline olhou para Selina, seus olhos prateados brilhando com uma nova luz. A aliança entre elas era tão forte quanto a própria tocha de Ellynia. Mas uma sombra pairou entre elas, um mistério que ameaçava destruir tudo o que elas haviam conquistado.”` 
+  },
+  // ... adicione as outras imagens e descrições aqui ...
+  // Exemplo:
+  {
+    src: `Imagem3.jpeg`,
+    alt: `“Edan recuava, tentando desviar das lâminas de Selina. O que antes era amizade agora se transformara em uma batalha tensa, onde cada movimento era um golpe, cada olhar uma ameaça.”`
+  },
+  {
+    src: `Imagem4.jpeg`,
+    alt: `Assim que os seus olhos se voltaram para o céu, o dragão das sombras começou a bater as suas asas sobre os guerreiros que chegavam para confrontá-lo, criando uma parede de vento que destruiu as decorações que enfeitavam a Zona Nobre.`
+  },
+  {
+    src: `Imagem5.jpeg`,
+    alt: `Embate entre as forças da luz e das trevas`
+  },
+  {
+    src: `Imagem6.jpeg`,
+    alt: `Combatente enfrentando uma criatura das trevas`
+  },
+  {
+    src: `Imagem7.jpeg`,
+    alt: `Castelo repleto de luz`
+  },
+  {
+    src: `Imagem8.jpeg`,
+    alt: `Gritos de liberdade`
+  },
+  {
+    src: `Imagem9.jpeg`,
+    alt: `Divindades mitológicas`
+  },
+  {
+    src: `Imagem10.jpeg`,
+    alt: `Aedra e os orfãos das luas`
+  },
+  {
+    src: `Imagem11.jpeg`,
+    alt: `Manipulação de espírito`
+  },
+  {
+    src: `Imagem12.jpeg`,
+    alt: `Impuros-espíritos das sombras`
+  },
+  {
+    src: `Imagem13.jpeg`,
+    alt: `Impuros-espíritos das sombras`
+  },
+  // ... e assim por diante ...
 ];
 
 let imagemAtual = 0;
+let abaAtual = 0;
 
 function carregarImagens() {
-    imagens.forEach((imagem, indice) => { // Incluindo o índice
-        const imgElement = document.createElement('img');
-        imgElement.src = imagem.src;
-        imgElement.alt = imagem.alt;
+  const imagensPorAba = 6; 
+  const numeroAbas = Math.ceil(imagens.length / imagensPorAba);
 
-        imgElement.addEventListener('click', function() {
-            imagemAtual = indice; // Atualiza a imagem atual ao clicar
-            exibirImagem(imagemAtual);
-            modal.style.display = "block"; 
-        });
+  for (let i = 0; i < numeroAbas; i++) {
+    const aba = document.createElement('div');
+    aba.classList.add('aba');
+    aba.innerText = `Aba ${i + 1}`;
+    aba.addEventListener('click', () => mostrarAba(i));
+    abasContainer.appendChild(aba);
+  }
 
-        galeria.appendChild(imgElement);
+  mostrarAba(abaAtual); 
+}
+
+function mostrarAba(indiceAba) {
+  const abaAtivaAnterior = document.querySelector('.aba.ativa');
+  if (abaAtivaAnterior) {
+    abaAtivaAnterior.classList.remove('ativa');
+  }
+
+  abasContainer.children[indiceAba].classList.add('ativa');
+
+  abaAtual = indiceAba;
+  atualizarGaleria();
+}
+
+function atualizarGaleria() {
+    const termoDeBusca = campoBusca.value.toLowerCase();
+    galeria.innerHTML = ''; 
+  
+    const imagensPorAba = 6;
+    const inicio = abaAtual * imagensPorAba;
+    const fim = inicio + imagensPorAba;
+  
+    const imagensFiltradas = imagens.slice(inicio, fim).filter(imagem => {
+      return imagem.alt.toLowerCase().includes(termoDeBusca);
+    });
+  
+    imagensFiltradas.forEach((imagem, indice) => {
+      const imgElement = document.createElement('img');
+      imgElement.src = imagem.src;
+      imgElement.alt = imagem.alt;
+  
+      imgElement.addEventListener('click', function() {
+        imagemAtual = inicio + indice;
+        exibirImagem(imagemAtual);
+        modal.style.display = "block"; 
+      });
+  
+      galeria.appendChild(imgElement);
     });
 }
 
 function exibirImagem(indice) {
-    if (indice < 0) {
-        imagemAtual = imagens.length - 1;
-    } else if (indice >= imagens.length) {
-        imagemAtual = 0;
-    } else {
-        imagemAtual = indice;
-    }
+  if (indice < 0) {
+    imagemAtual = imagens.length - 1;
+  } else if (indice >= imagens.length) {
+    imagemAtual = 0;
+  } else {
+    imagemAtual = indice;
+  }
 
-    imgModal.src = imagens[imagemAtual].src;
-    document.getElementById('descricao-modal').innerText = imagens[imagemAtual].alt;
+  imgModal.src = imagens[imagemAtual].src;
+  document.getElementById('descricao-modal').innerText = imagens[imagemAtual].alt;
 }
 
 fecharModal.addEventListener('click', function() {
-    modal.style.display = "none";
+  modal.style.display = "none";
 });
 
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 setaEsquerda.addEventListener('click', function() {
-    exibirImagem(imagemAtual - 1);
+  exibirImagem(imagemAtual - 1);
 });
 
 setaDireita.addEventListener('click', function() {
-    exibirImagem(imagemAtual + 1);
+  exibirImagem(imagemAtual + 1);
 });
 
 window.onload = carregarImagens;
+campoBusca.addEventListener('input', () => {
+    mostrarAba(0); // Volta para a primeira aba ao buscar
+    atualizarGaleria(); 
+  });
