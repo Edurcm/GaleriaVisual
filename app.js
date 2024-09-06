@@ -9,11 +9,11 @@ const campoBusca = document.getElementById('campo-busca');
 
 const imagens = [{
     src: `Imagem1.jpeg`, 
-    alt: `“O ar gelou, e um rugido ecoou pelas montanhas. Selina agarrou suas espadas gêmeas e as chamas escarlates dançaram em torno dela. O Impuro colossal avançava, mas a Fúria Vermelha não recuaria. Era uma batalha pelo destino de Luminare. E a luz de Ellynia brilhava no horizonte, um grito de esperança contra as sombras.”` 
+    alt: `“Fúria vermelha diante de um Impuro colossal”` 
   },
   {
     src: `Imagem2.jpeg`, 
-    alt: `“Evaline olhou para Selina, seus olhos prateados brilhando com uma nova luz. A aliança entre elas era tão forte quanto a própria tocha de Ellynia. Mas uma sombra pairou entre elas, um mistério que ameaçava destruir tudo o que elas haviam conquistado.”` 
+    alt: `“A dama da luz conversando com a sua melhor amiga e protetora”` 
   },
   // ... adicione as outras imagens e descrições aqui ...
   // Exemplo:
