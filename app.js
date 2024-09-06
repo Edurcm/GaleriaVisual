@@ -61,6 +61,10 @@ const imagens = [{
     src: `Imagem13.jpeg`,
     alt: `Impuros-espíritos das sombras`
   },
+  {
+    src: `Imagem14.jpeg`,
+    alt: `Dama da luz observando a cidade-reino do alto do castelo central`
+  },
   // ... e assim por diante ...
 ];
 
