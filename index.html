@@ -1,35 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Minha Galeria</title>
+  <title>Meu álbum de ilustrações</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <h1>Galeria Visual</h1>
-    </header>
 
-    <input type="text" id="campo-busca" placeholder="Buscar por palavra-chave...">
-    <div class="abas" id="abas"></div>
+  <header>
+    <h1>Meu álbum de ilustrações</h1>
+    <p>Bem-vindo ao meu espaço criativo! Aqui, compartilho minhas explorações artísticas com IA.</p>
+    <nav>
+            <a href="https://namentedeedu.com/">Início</a>
+            <a href="https://namentedeedu.com/minhas-obras/">Sobre Mim</a>
+            <a href="https://namentedeedu.com/galeria-visual/">Galeria</a>
+            <!-- Adicione mais links de navegação aqui -->
+    </nav>
+  </header>
 
-    <main>
-        <div class="galeria" id="galeria"></div>
+  <main>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- Slides serão adicionados aqui pelo JavaScript --> 
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
 
-        <div class="modal" id="modal">
-            <span class="fechar" id="fechar-modal">×</span>
-            <span class="seta esquerda" id="seta-esquerda"><</span>
-            <img class="modal-conteudo" id="img-modal" src="" alt="">
-            <span class="seta direita" id="seta-direita">></span>
-            <p class="descricao-imagem" id="descricao-modal"></p> 
-        </div>
-    </main>
+    <section class="album">
+      <h2>Álbum Completo</h2>
+      <div class="grid-container">
+        <!-- Miniaturas serão adicionadas aqui pelo JavaScript --> 
+      </div>
+    </section>
 
-    <footer>
-        <p>© 2024 - Galeria Visual. Todos os direitos reservados.</p>
-    </footer>
+  </main>
+  
+  <!-- Botão "Voltar ao Topo" -->
+  <a href="#" id="voltarTopo" style="display: none;">Voltar ao Topo</a>
 
-    <script src="app.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+  <script>
+    // Código para o botão "Voltar ao Topo"
+    const botaoVoltar = document.getElementById('voltarTopo');
+    botaoVoltar.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' 
+      });
+    });
+
+    // Mostra o botão quando o Lightbox é aberto
+    lightbox.hooks.afterOpen = function() {
+      botaoVoltar.style.display = 'block';
+    };
+
+    // Esconde o botão quando o Lightbox é fechado
+    lightbox.hooks.beforeClose = function() {
+      botaoVoltar.style.display = 'none';
+    };
+
+    //Configuração do Lightbox
+    lightbox.option({
+      'wrapAround': true,
+      'showImageNumberLabel': true,
+      'disableScrolling': true // Opcional: Se quiser impedir o scroll da página
+    });
+  </script>
+
 </body>
 </html>
