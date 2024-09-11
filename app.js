@@ -1,7 +1,7 @@
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 const gridContainer = document.querySelector('.grid-container');
 
-for (let i = 1; i <= 15; i++) {
+for (let i = 1; i <= 16; i++) {
   const imageName = `Imagem${i}.jpeg`; 
   const imageDescription = `Descrição da Imagem ${i}`; 
 
